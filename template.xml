@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>vm_custom_icons</Name>
+  <Repository>spaceinvaderone/vm_custom_icons</Repository>
+  <Registry/>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support/>
+  <Project>https://github.com/SpaceinvaderOne/unraid_vm_icons</Project>
+  <Overview/>
+  <Category>Tools:</Category>
+  <WebUI>https://github.com/SpaceinvaderOne/unraid_vm_icons</WebUI>
+  <TemplateURL/>
+  <Icon/>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1605471300</DateInstalled>
+  <DonateText>If you like my work then please buy me a beer! :)</DonateText>
+  <DonateLink>https://www.paypal.com/paypalme/spaceinvader</DonateLink>
+  <Description/>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish/>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/vm_custom_icons</HostDir>
+      <ContainerDir>/icons</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment>
+    <Variable>
+      <Value>yes</Value>
+      <Name>windows</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>yes</Value>
+      <Name>linux</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>yes</Value>
+      <Name>freebsd</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>yes</Value>
+      <Name>other</Name>
+      <Mode/>
+    </Variable>
+  </Environment>
+  <Labels/>
+  <Config Name="windows icons" Target="windows" Default="yes|no" Mode="" Description="select yes or no to download windows vm icons" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
+  <Config Name="linux icons" Target="linux" Default="yes|no" Mode="" Description="select yes or no to download linux vm icons" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
+  <Config Name="freebsd icons" Target="freebsd" Default="yes|no" Mode="" Description="select yes or no to download freebsd vm icons" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
+  <Config Name="other vm icons" Target="other" Default="yes|no" Mode="" Description="select yes or no to download other vm icons" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
+  <Config Name="icons" Target="/icons" Default="" Mode="rw" Description="icon store" Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/vm_custom_icons</Config>
+</Container>
