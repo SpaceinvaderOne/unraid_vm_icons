@@ -6,7 +6,7 @@
   <Network>bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>
-  <Privileged>false</Privileged>
+  <Privileged>true</Privileged>
   <Support/>
   <Project>https://github.com/SpaceinvaderOne/unraid_vm_icons</Project>
   <Overview/>
@@ -17,7 +17,7 @@
   <ExtraParams/>
   <PostArgs/>
   <CPUset/>
-  <DateInstalled>1605477678</DateInstalled>
+  <DateInstalled>1605489352</DateInstalled>
   <DonateText>If you like my work then please buy me a beer! :)</DonateText>
   <DonateLink>https://www.paypal.com/paypalme/spaceinvader</DonateLink>
   <Description/>
@@ -33,7 +33,7 @@
     </Volume>
     <Volume>
       <HostDir>/mnt/user/appdata/vm_custom_icons</HostDir>
-      <ContainerDir>/icons</ContainerDir>
+      <ContainerDir>/config</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
   </Data>
@@ -68,6 +68,11 @@
       <Name>delete</Name>
       <Mode/>
     </Variable>
+    <Variable>
+      <Value>no</Value>
+      <Name>tune</Name>
+      <Mode/>
+    </Variable>
   </Environment>
   <Labels/>
   <Config Name="windows icons" Target="windows" Default="yes|no" Mode="" Description="select yes or no to download windows vm icons" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
@@ -76,6 +81,8 @@
   <Config Name="macos vm icons" Target="macos" Default="yes|no" Mode="" Description="select yes or no to download macos vm icons" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
   <Config Name="other os  icons" Target="other" Default="yes|no" Mode="" Description="select yes or no to download other vm icons" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
   <Config Name="Delete previous &amp;amp; redownload above" Target="delete" Default="yes|no" Mode="" Description="set to yes to delete previous downloaded icons. and redownload the above from github. " Type="Variable" Display="always" Required="false" Mask="false">no</Config>
+  <Config Name="Enable sucess tune on icon load" Target="tune" Default="yes|no" Mode="" Description="Enable tune on sucess. (you must have a beep speaker)" Type="Variable" Display="always" Required="false" Mask="false">no</Config>
   <Config Name="vm manager icon location" Target="/unraid_vm_icons" Default="" Mode="rw" Description="location on server where Unraid stores vm icons (dont change this)" Type="Path" Display="advanced" Required="false" Mask="false">/usr/local/emhttp/plugins/dynamix.vm.manager/templates/images</Config>
-  <Config Name="icons" Target="/icons" Default="" Mode="rw" Description="icon store" Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/vm_custom_icons</Config>
+  <Config Name="appdata" Target="/config" Default="" Mode="rw" Description="appdata" Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/vm_custom_icons</Config>
+  <Config Name="beep speaker" Target="" Default="" Mode="" Description="Container Device: " Type="Device" Display="advanced" Required="false" Mask="false">/dev/tty0</Config>
 </Container>
