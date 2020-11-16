@@ -170,9 +170,6 @@ fi
     if [ $sleeptimehuman == "10 minutes" ] ; then
 	sleeptime=600
 fi
-else
-	sleeptime=30
-fi
 
 sleep $sleeptime
 
