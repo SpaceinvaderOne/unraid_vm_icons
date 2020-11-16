@@ -155,19 +155,19 @@ fi
 
 # set time before exiting container
 exit_time() {
-    if [ $sleeptimehuman == "30 seconds" ] ; then
+    if [ "$sleeptimehuman" == "30 seconds" ] ; then
 	sleeptime=30
 fi
-    if [ $sleeptimehuman == "1 minute" ] ; then
+    if [ "$sleeptimehuman" == "1 minute" ] ; then
 	sleeptime=60
 fi
-    if [ $sleeptimehuman == "2 minutes" ] ; then
+    if [ "$sleeptimehuman" == "2 minutes" ] ; then
 	sleeptime=120
 fi
-    if [ $sleeptimehuman == "5 minutes" ] ; then
+    if [ "$sleeptimehuman" == "5 minutes" ] ; then
 	sleeptime=300
 fi
-    if [ $sleeptimehuman == "10 minutes" ] ; then
+    if [ "$sleeptimehuman" == "10 minutes" ] ; then
 	sleeptime=600
 fi
 
