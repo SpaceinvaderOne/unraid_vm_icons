@@ -23,14 +23,13 @@ shall_i_delete() {
     echo "."
     echo "."
 else
-	echo "  ......continuing."
+	echo "  Clear all icons not set......continuing."
 
 	fi					
 
 }
 
-
-# Create icon directory if not present if directory exists sync contents to vm manger and exit
+# Create icon directory if not present. If directory exists then only sync contents to vm manger
 download_or_sync() {
 	if [ ! -d $DIR ] ; then
 		
@@ -41,6 +40,7 @@ download_or_sync() {
     rm -r /config/unraid_vm_icons
     fi
 	git -C /config clone https://github.com/SpaceinvaderOne/unraid_vm_icons.git
+	downloadstock
 	downloadwindows
 	downloadlinux
 	downloadfreebsd
@@ -59,17 +59,18 @@ else
 	fi
 	rm /unraid_vm_icons/*.png	
 	rsync -a $DIR/* /unraid_vm_icons
+	chmod 777 -R /config/
 	playtune		
 		
 
 }
 
 # Keep stock Unraid VM icons if set in template
-downloadwindows() {
+downloadstock() {
     if [ $stock == "yes" ] ; then
 	rsync -a /config/unraid_vm_icons/icons/Stock_Icons/* $DIR
 			else
-				echo "  unraid stock  icons not wanted......continuing."
+				echo "  unraid stock icons not wanted......continuing."
 			    echo "."
 			    echo "."
 
@@ -152,8 +153,38 @@ beep -f 130 -l 100 -n -f 262 -l 100 -n -f 330 -l 100 -n -f 392 -l 100 -n -f 523 
 fi
 }
 
+# set time before exiting container
+exit_time() {
+    if [ $sleeptimehuman == "30 seconds" ] ; then
+	sleeptime=30
+fi
+    if [ $sleeptimehuman == "1 minute" ] ; then
+	sleeptime=60
+fi
+    if [ $sleeptimehuman == "2 minutes" ] ; then
+	sleeptime=120
+fi
+    if [ $sleeptimehuman == "5 minutes" ] ; then
+	sleeptime=300
+fi
+    if [ $sleeptimehuman == "10 minutes" ] ; then
+	sleeptime=600
+fi
+else
+	sleeptime=30
+fi
+
+sleep $sleeptime
+
+
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# #  run functions                                                      # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 shall_i_delete
 download_or_sync
+exit_time
 
 
