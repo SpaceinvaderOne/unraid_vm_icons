@@ -1,6 +1,7 @@
 # unraid_vm_icons
 
 A docker container that downloads and installs additional custom VM icons to the Unraid VM Manager.
+Please install this from the Unraid community applications plugin.
 
 I hope that people will submit custom icons to this repo which once approved will be added to the icons available to download for all.
 
