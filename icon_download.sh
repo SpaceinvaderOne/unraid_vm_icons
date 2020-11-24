@@ -14,8 +14,9 @@ DIR="/config/icons"
 # #  Functions                                                          # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Delete icon store if present and delete is set to yes in template
+# Delete icon store if present and delete if set to yes in template
 shall_i_delete() {
+	#check if icon store exists and delete it if clear icons flag is set
 	if [ -d $DIR ] && [ $delete == "yes" ]; then
 		
 	rm -r $DIR
@@ -23,23 +24,30 @@ shall_i_delete() {
     echo "."
     echo "."
 else
+	#do nothing and continue of clear icons flag is not set
 	echo "  Clear all icons not set......continuing."
 
 	fi					
 
 }
 
-# Create icon directory if not present. If directory exists then only sync contents to vm manger
-download_or_sync() {
+checkgit() {
+	
+	# delete directory if previously run so can do fresh gitclone
+	if [ -d /config/unraid_vm_icons ] ; then
+    rm -r /config/unraid_vm_icons
+    fi
+	#run gitclone
+git -C /config clone https://github.com/SpaceinvaderOne/unraid_vm_icons.git				
+}
+
+# Create icon directory if not present then download selected icons. Skip if already done
+downloadicons() {
 	if [ ! -d $DIR ] ; then
 		
 	mkdir -vp $DIR
 	echo "I have created the icon store directory & now will start downloading selected icons"
-	
-	if [ -d /config/unraid_vm_icons ] ; then
-    rm -r /config/unraid_vm_icons
-    fi
-	git -C /config clone https://github.com/SpaceinvaderOne/unraid_vm_icons.git
+    checkgit
 	downloadstock
 	downloadwindows
 	downloadlinux
@@ -48,27 +56,38 @@ download_or_sync() {
 	downloadmacos
     echo "."
     echo "."
-	echo "icons downloaded and synced"
+	echo "icons downloaded"
 else
 	
     echo "."
     echo "."
 	echo "Icons downloaded previously."
-	echo "icons synced"
+	
 
 	fi
-	rm /unraid_vm_icons/*.png	
-	rsync -a $DIR/* /unraid_vm_icons
-	chmod 777 -R /config/
-	playtune		
-		
+			
+}
 
+# Sync icons in icon store to vm manager
+syncicons() {
+	#make sure at least one file exists before trying to delete
+	touch /unraid_vm_icons/windowsxp.png
+	#delete all existing icons in vm manager
+	rm /unraid_vm_icons/*.*	
+	#sync all icons selected to vm manager
+	rsync -a $DIR/ /unraid_vm_icons/
+	#reset permissions of appdata folder
+	chmod 777 -R /config/
+	#print message
+    echo "icons synced"
+	#play a tune if set
+	playtune	
 }
 
 # Keep stock Unraid VM icons if set in template
 downloadstock() {
     if [ $stock == "yes" ] ; then
-	rsync -a /config/unraid_vm_icons/icons/Stock_Icons/* $DIR
+	rsync -a /config/unraid_vm_icons/icons/Stock_Icons/ $DIR/
 			else
 				echo "  unraid stock icons not wanted......continuing."
 			    echo "."
@@ -81,7 +100,7 @@ fi
 # Download windows based OS icons if set in template
 downloadwindows() {
     if [ $windows == "yes" ] ; then
-	rsync -a /config/unraid_vm_icons/icons/Windows/* $DIR
+	rsync -a /config/unraid_vm_icons/icons/Windows/ $DIR/
 			else
 				echo "  windows based os icons not wanted......continuing."
 			    echo "."
@@ -94,7 +113,7 @@ fi
 # Download linux based OS icons if set in template
 downloadlinux() {
     if [ $linux == "yes" ] ; then
-    rsync -a /config/unraid_vm_icons/icons/Linux/* $DIR
+    rsync -a /config/unraid_vm_icons/icons/Linux/ $DIR/
 			else
 				echo "  linux based os icons not wanted......continuing."
 			    echo "."
@@ -108,7 +127,7 @@ fi
 # Download freebsd based OS icons if set in template
 downloadfreebsd() {
     if [ $freebsd == "yes" ] ; then
-	rsync -a /config/unraid_vm_icons/icons/Freebsd/* $DIR
+	rsync -a /config/unraid_vm_icons/icons/Freebsd/ $DIR/
 			else
 				echo "  freebsd based os icons not wanted......continuing."
 			    echo "."
@@ -121,7 +140,7 @@ fi
 # Download other OS icons if set in template
 downloadother() {
     if [ $other == "yes" ] ; then
-	rsync -a /config/unraid_vm_icons/icons/Other/* $DIR
+	rsync -a /config/unraid_vm_icons/icons/Other/ $DIR/
 			else
 				echo "  other os icons not wanted......continuing."
 			    echo "."
@@ -134,7 +153,7 @@ fi
 # Download macOS based OS icons if set in template
 downloadmacos() {
     if [ $macos == "yes" ] ; then
-	rsync -a /config/unraid_vm_icons/icons/macOS/* $DIR
+	rsync -a /config/unraid_vm_icons/icons/macOS/ $DIR/
 			else
 				echo "  macos based os icons not wanted......continuing."
 			    echo "."
@@ -181,7 +200,8 @@ sleep $sleeptime
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 shall_i_delete
-download_or_sync
+downloadicons
+syncicons
 exit_time
 
 
