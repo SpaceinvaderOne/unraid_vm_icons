@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
+FROM alpine:latest
 MAINTAINER SpaceinvaderOne
-RUN apt-get update && apt-get -y install git bash beep rsync
+RUN apk add --no-cache git bash beep rsync
 COPY . /iconsync
 VOLUME /unraid_vm_icons
 VOLUME /config
