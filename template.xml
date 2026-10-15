@@ -107,6 +107,11 @@ Other options dont change&#xD;
     </Variable>
     <Variable>
       <Value>yes</Value>
+      <Name>agents</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>yes</Value>
       <Name>stock</Name>
       <Mode/>
     </Variable>
@@ -132,6 +137,7 @@ Other options dont change&#xD;
   <Config Name="freebsd icons" Target="freebsd" Default="yes|no" Mode="" Description="select yes or no to download freebsd vm icons" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
   <Config Name="macos vm icons" Target="macos" Default="yes|no" Mode="" Description="select yes or no to download macos vm icons" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
   <Config Name="other os  icons" Target="other" Default="yes|no" Mode="" Description="select yes or no to download other vm icons" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
+  <Config Name="agent icons" Target="agents" Default="yes|no" Mode="" Description="select yes or no to download coding agent and agent-tool vm icons" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
   <Config Name="Keep Stock VM Icons" Target="stock" Default="yes|no" Mode="" Description="set to no to remove stock unraid vm icons" Type="Variable" Display="always" Required="false" Mask="false">yes</Config>
   <Config Name="Clear all icons &amp;amp; redownload above on each start" Target="delete" Default="no|yes" Mode="" Description="set to yes to delete all vm icons. and redownload the above from github on every run of container " Type="Variable" Display="always" Required="false" Mask="false">no</Config>
   <Config Name="Enable sucess tune on icon load" Target="tune" Default="no|yes" Mode="" Description="Enable tune on sucess. (you must have a beep speaker)" Type="Variable" Display="always" Required="false" Mask="false">no</Config>

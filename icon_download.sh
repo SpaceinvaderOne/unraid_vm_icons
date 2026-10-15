@@ -53,6 +53,7 @@ downloadicons() {
 	downloadlinux
 	downloadfreebsd
 	downloadother
+	downloadagents
 	downloadmacos
     echo "."
     echo "."
@@ -150,6 +151,18 @@ downloadother() {
 fi
 }
 
+# Download agent and agent-tool icons if set in template
+downloadagents() {
+    if [ "${agents:-no}" == "yes" ] ; then
+    rsync -a /config/unraid_vm_icons/icons/Agents/ "$DIR/"
+            else
+                echo "  agent icons not wanted......continuing."
+                echo "."
+                echo "."
+
+fi
+}
+
 # Download macOS based OS icons if set in template
 downloadmacos() {
     if [ $macos == "yes" ] ; then
@@ -203,5 +216,4 @@ shall_i_delete
 downloadicons
 syncicons
 exit_time
-
 
