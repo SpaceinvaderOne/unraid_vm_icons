@@ -6,6 +6,13 @@ Please install this from the Unraid community applications plugin.
 
 I hope that people will submit custom icons to this repo which once approved will be added to the icons available to download for all.
 
+### Icon sources
+
+- `icons/Linux/Talos.png`: [official Talos Linux logo](https://www.siderolabs.com/redesign-2026/icons/icon-talos.svg).
+- `icons/Linux/Omarchy.png`: [official Omarchy logo](https://omarchy.org/brand/omarchy-logo.svg).
+
+These icons are rendered as 512 × 512 PNGs with transparent backgrounds and are included when Linux icons are selected.
+
 Usage
 
 After install Container should be set to auto start so icons are synced everytime the server or array starts.
